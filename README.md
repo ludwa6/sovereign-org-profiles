@@ -108,6 +108,10 @@ schema — copy one, change the fields, host it at your own URL, register it.
 
 ## How to participate
 
+New here and not technical? Start with the plain-language on-ramp:
+**[`docs/GET-LISTED.md`](docs/GET-LISTED.md)** walks you from "no website" to
+"on the map" in three tiers. The short version:
+
 1. Copy an example from `profiles/` and edit it for your org.
 2. Host it at a stable URL on a domain you control
    (e.g. `https://your-org.example/murmurations-profile.json`).

@@ -138,15 +138,12 @@ redoing your work.
 
 ### A graduated on-ramp
 
-| Tier | Generate the JSON | Host it | Sovereignty | Who it's for |
-|---|---|---|---|---|
-| **0 — Listed today** | [MurmurMaps Profile Generator](https://murmurmaps.murmurations.network/profile-generator) (a form, no raw JSON) | MurmurMaps hosting | URL on *their* domain | Anyone with zero website and no time. In the index this afternoon. |
-| **1 — Sovereign-ish, still simple** | Same MurmurMaps form | A dead-simple host you control: GitHub Pages, Netlify Drop, any static file host | You own the file; URL on a generic host | People who can follow a short guide and want to own their data. |
-| **2 — Fully sovereign** | MurmurMaps form, or the Murmurations WordPress plugin | Your own domain: WordPress + plugin, or a static `your-org.example/murmurations-profile.json` | Canonical URL on a domain you control | Orgs with a website (or willing to point a domain). |
-
-Register the URL at every tier with the **Index Updater**
-(`https://murmurations.network/index-updater`) — that's the one step that
-actually puts you on the map.
+The concrete steps — the three tiers (0 listed-today, 1 sovereign-ish,
+2 fully-sovereign), the one Index-Updater registration step, and the
+copy-an-example shortcut — live in **[`GET-LISTED.md`](./GET-LISTED.md)**, the
+plain-language guide for a non-technical newcomer. This document keeps the
+*reasoning*; that one keeps the *recipe*, so there's a single canonical
+step-list to maintain.
 
 ### Migration is the feature
 
@@ -154,9 +151,10 @@ Here is the part bare Murmurations doesn't foreground, and the reason this
 on-ramp is honest rather than a sovereignty trap:
 
 **Moving up a tier is just re-submitting a new URL to the index.** Your profile
-*content* never changes — only where it lives. Start at Tier 0 today; when you
-get a domain next month, host the same JSON there, submit the new URL, retire
-the old one. No rework. "Start easy, become sovereign later" costs you nothing.
+*content* never changes — only where it lives. Start easy, become sovereign
+later, and the work you do today carries forward unchanged — so the
+ease↔sovereignty tradeoff above is a *sequence*, not a fork. The step-by-step
+migration walkthrough is in [`GET-LISTED.md`](./GET-LISTED.md#migration-is-the-feature).
 
 > *(The index stores URL + hash, so a tier change = a fresh submission plus
 > retiring the previous URL. Confirm the current re-point / delete mechanics
