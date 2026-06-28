@@ -60,10 +60,11 @@ and host the result — that's Tier 1 or 2 in one move.
 Whatever tier you chose, the file isn't discoverable until you **register its
 URL with the Murmurations Index Updater**:
 
-> <https://murmurations.network/index-updater>
+> <https://murmurmaps.murmurations.network/index-updater>
 
-Paste your profile's URL, submit. The index stores your URL and a hash of the
-file — **not the data itself** — and aggregators take it from there. (Polling is
+Paste your profile's URL, submit. The index stores your URL plus a set of
+searchable fields — **not the file's full contents** — and aggregators query
+the index and then fetch your profile from your URL. (Polling is
 eventually-consistent: expect hours, not seconds, before you appear.)
 
 ---

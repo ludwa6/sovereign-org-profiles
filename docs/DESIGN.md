@@ -33,15 +33,20 @@ Two existing, already-running protocols — **composed, not built from scratch.*
 
 [Murmurations](https://murmurations.network) is a distributed data-sharing
 protocol for the regenerative economy. Each node (org, person, project) hosts a
-JSON profile at its own URL. A shared index stores the URL and a hash — **not**
-the data. Aggregators query the index to build maps and directories.
+JSON profile at its own URL. A shared index stores the profile's URL plus a set
+of searchable fields — **not** the full profile data; the index's `node_id` is
+a SHA256 hash of the profile URL. Aggregators query the index for matching
+nodes, then fetch each profile from its own URL to build maps and directories.
 
-The protocol includes three profile types:
+The protocol's schema library includes (among others) these profile types — the
+exact `linked_schemas` id is given for each:
 
-- **Organisation** — stable identity: name, location, mission, tags,
-  relationships, contact
-- **Person** — individual profiles
-- **Offer or Want** — goods, services, land, skills offered or sought
+- **Organisation** (`organizations_schema-v1.0.0`) — stable identity: name,
+  location, mission, tags, relationships, contact
+- **Person** (`people_schema`) — individual profiles
+- **Offer-or-Want** (`offers_wants_schema-v0.1.0`) — a *single combined* schema
+  for goods, services, land, or skills offered **or** sought (not two separate
+  offers/wants schemas)
 
 The `relationships` field enables explicit, machine-readable links between
 nodes — a hub profile can name its affiliated organizations as nodes; a
@@ -107,8 +112,8 @@ Murmurations + RSS avoids this because:
 
 1. Both protocols are **already running** — real nodes, real aggregators, real
    index infrastructure.
-2. The **Offer or Want** schema type was built for exactly this matching use
-   case.
+2. The **Offer-or-Want** schema (`offers_wants_schema`) was built for exactly
+   this matching use case.
 3. The minimal viable contribution is a JSON file and an RSS feed — both of
    which most orgs already have (WordPress ships RSS; the JSON is an afternoon
    of work).
@@ -156,9 +161,14 @@ later, and the work you do today carries forward unchanged — so the
 ease↔sovereignty tradeoff above is a *sequence*, not a fork. The step-by-step
 migration walkthrough is in [`GET-LISTED.md`](./GET-LISTED.md#migration-is-the-feature).
 
-> *(The index stores URL + hash, so a tier change = a fresh submission plus
-> retiring the previous URL. Confirm the current re-point / delete mechanics
-> against the Murmurations docs before documenting them as a guaranteed path.)*
+Confirmed re-point / delete mechanics (per the Murmurations
+[developer FAQ](https://docs.murmurations.network/faqs/developer.html)): the
+index `node_id` is a SHA256 hash of the profile URL, so a new URL is a *new*
+node. To retire the old one, take down the old page so it returns `404`, then
+send a DELETE for that node to the index; the index re-validates the 404 before
+marking it deleted. So a tier change is: POST the new URL (via the
+[Index Updater](https://murmurmaps.murmurations.network/index-updater)), then
+404-and-delete the old. The profile *content* is identical across the move.
 
 ### What this project does NOT build
 
@@ -172,7 +182,8 @@ drift into rebuilding what already runs:
   aggregators (and maps like Kumu, networks like Bloom) already consume the data.
 
 What this project **does** build is the thing that doesn't exist yet: a
-**plain-language, opinionated on-ramp** — the tier guide above, the honest
+**plain-language, opinionated on-ramp** — the tier guide (in
+[`GET-LISTED.md`](./GET-LISTED.md)), the honest
 ease↔sovereignty framing, and the migration path — plus a small set of **worked
 example profiles** a newcomer can copy. The only tooling that could later earn
 its place is a "starter kit" that collapses Tier 1→2 in one move (emit the JSON
@@ -183,8 +194,13 @@ the demand.
 
 ## Open questions
 
-- Does the chosen aggregator/network (e.g. Bloom) read from the Murmurations
-  index, or require a separate submission?
+- **Mechanism confirmed, per-network policy still open.** Any aggregator
+  consumes the index by querying it for matching nodes' `profile_url`s and then
+  fetching each profile from its own URL — so registering with the index is the
+  single act that makes you discoverable to *all* index-reading aggregators. What
+  remains open is per-network: whether a given network (e.g. Bloom) runs its own
+  aggregator against the index automatically, or curates/filters which nodes it
+  surfaces (see the governance question below).
 - Can a Kumu map be configured to pull from Murmurations rather than manual
   entry — making the map a view over a sovereign substrate?
 - For the dynamic layer: community-operated WebSub hub first (simpler), or the
