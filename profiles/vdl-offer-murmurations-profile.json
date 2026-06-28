@@ -1,0 +1,34 @@
+{
+  "linked_schemas": ["offers_wants_schema-v0.1.0"],
+  "exchange_type": "offer",
+  "item_type": "service",
+  "transaction_type": ["receive-donate"],
+  "title": "Regenerative agriculture volunteer placements at Vale da Lama",
+  "description": "Vale da Lama offers hands-on volunteer and work-exchange placements on its regenerative organic farm in SW Algarve, Portugal. Volunteers join the land team in agroforestry, market gardening, watershed restoration, and community life, learning regenerative practice by doing it. Placements run seasonally; food and shared accommodation are provided in exchange for participation. Suited to people seeking practical experience in regenerative land stewardship — including those looking for a path toward stewarding land of their own.",
+  "tags": [
+    "volunteering",
+    "work exchange",
+    "regenerative agriculture",
+    "permaculture",
+    "agroforestry",
+    "land stewardship",
+    "farm stay",
+    "nature-based learning",
+    "food sovereignty",
+    "ecosystem restoration",
+    "Portugal",
+    "Algarve",
+    "Europe"
+  ],
+  "geographic_scope": "international",
+  "geolocation": {
+    "lat": 37.140639,
+    "lon": -8.632694
+  },
+  "image": "https://www.valedalama.net/wp-content/uploads/2021/10/logo-vale-da-lama-image-background-02-e1638186825871.jpg",
+  "details_url": "https://valedalama.net",
+  "contact_details": {
+    "email": "info@valedalama.net",
+    "contact_form": "https://www.valedalama.net/contact/"
+  }
+}
