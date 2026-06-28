@@ -1,0 +1,44 @@
+{
+  "linked_schemas": ["organizations_schema-v1.0.0"],
+  "name": "Novas Descobertas Association",
+  "nickname": "AND",
+  "primary_url": "https://novasdescobertas.org/en/",
+  "description": "Novas Descobertas Association is a Portuguese educational NGO founded in 1994, based at Campo do Vale, Quinta Vale da Lama, Odiáxere, Lagos, SW Algarve, Portugal. It delivers experiential education and self-development programs for learners of all ages, including youth day and residential camps, customised programs for schools and groups, a Permaculture Design Course (PDC), and Ecosystem Regeneration Camps for advanced learners. Programs are held in English and Portuguese.",
+  "mission": "To provide transformative educational and self-development experiences rooted in ecology, permaculture, and community for learners of all ages and backgrounds.",
+  "tags": [
+    "permaculture",
+    "permaculture design course",
+    "PDC",
+    "ecosystem regeneration",
+    "experiential education",
+    "environmental education",
+    "youth camps",
+    "residential camps",
+    "nature-based learning",
+    "self-development",
+    "regenerative agriculture",
+    "agroecology",
+    "community learning",
+    "NGO",
+    "association",
+    "volunteering",
+    "Portugal",
+    "Algarve",
+    "Lagos",
+    "Europe"
+  ],
+  "status": "active",
+  "full_address": "Campo do Vale, Quinta Vale da Lama, EM534, 8600-258 Odiáxere, Lagos, PORTUGAL",
+  "country_iso_3166": "PT",
+  "geolocation": {
+    "lat": 37.140639,
+    "lon": -8.632694
+  },
+  "geographic_scope": "regional",
+  "relationships": [
+    {
+      "relationship_type": "host",
+      "related_url": "https://valedalama.net"
+    }
+  ]
+}

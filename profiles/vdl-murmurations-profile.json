@@ -1,0 +1,60 @@
+{
+  "linked_schemas": ["organizations_schema-v1.0.0"],
+  "name": "Vale da Lama",
+  "nickname": "VdL",
+  "primary_url": "https://valedalama.net",
+  "description": "Vale da Lama is a regenerative organic farm and intentional community in Odiáxere, Lagos, SW Algarve, Portugal. The farm hosts agrotourism stays, educational events, volunteer programs, and partner organisations focused on regenerative agriculture, food sovereignty, ecosystem restoration, and community resilience. It is the hub of a network including Novas Descobertas Association, Mud Valley Foundation, and Casa Vale da Lama Eco Resort.",
+  "mission": "To demonstrate and share regenerative land use and co-creative community as a model for the bioregion and beyond.",
+  "tags": [
+    "permaculture",
+    "regenerative agriculture",
+    "regenerative farming",
+    "food sovereignty",
+    "agroforestry",
+    "agrotourism",
+    "ecovillage",
+    "intentional community",
+    "ecosystem restoration",
+    "watershed restoration",
+    "bioregional",
+    "volunteering",
+    "farm stay",
+    "nature-based learning",
+    "sustainability",
+    "regenerative economy",
+    "solidarity economy",
+    "Portugal",
+    "Algarve",
+    "Lagos",
+    "Europe"
+  ],
+  "status": "active",
+  "full_address": "Quinta Vale da Lama, EM534, CP 325-N, 8600-258 Odiáxere, Lagos, PORTUGAL",
+  "country_iso_3166": "PT",
+  "geolocation": {
+    "lat": 37.140639,
+    "lon": -8.632694
+  },
+  "geographic_scope": "regional",
+  "image": "https://www.valedalama.net/wp-content/uploads/2021/10/logo-vale-da-lama-image-background-02-e1638186825871.jpg",
+  "header_image": "https://www.valedalama.net/wp-content/uploads/2021/10/Untitled_Artwork-e1635214010670.png",
+  "rss": "https://valedalama.net/feed",
+  "contact_details": {
+    "email": "info@valedalama.net",
+    "contact_form": "https://www.valedalama.net/contact/"
+  },
+  "relationships": [
+    {
+      "relationship_type": "partner",
+      "related_url": "https://novasdescobertas.org/en/"
+    },
+    {
+      "relationship_type": "partner",
+      "related_url": "https://mudvalley.org"
+    },
+    {
+      "relationship_type": "partner",
+      "related_url": "https://casavaledalama.com"
+    }
+  ]
+}
