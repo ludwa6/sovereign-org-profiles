@@ -94,15 +94,18 @@ No aggregator owns the data; each one reads from the canonical URLs.
 ## What's in this repo
 
 ```
-/profiles/    Example Murmurations Organisation profiles (VdL, Mud Valley, Novas Descobertas)
+/profiles/    Example Murmurations profiles: three Organisation profiles (VdL,
+              Mud Valley, Novas Descobertas) + one Offer-or-Want (VdL volunteer offer)
 /schema/      AEO/GEO assets per org — schema.org HTML + llms.txt
 /docs/        The model, the RSS/RSS-Cloud paths, links to Murmurations docs
 /README.md    You are here
 ```
 
-The three worked examples come from the Vale da Lama bioregional network. They
-exist so a newcomer can see a complete, real profile rather than an abstract
-schema — copy one, change the fields, host it at your own URL, register it.
+The worked examples come from the Vale da Lama bioregional network. They exist
+so a newcomer can see a complete, real profile rather than an abstract schema —
+copy one, change the fields, host it at your own URL, register it. Three are
+Organisation profiles; `vdl-offer-murmurations-profile.json` is an
+Offer-or-Want, showing the matching layer in practice.
 
 ---
 
@@ -117,7 +120,8 @@ New here and not technical? Start with the plain-language on-ramp:
    (e.g. `https://your-org.example/murmurations-profile.json`).
 3. Register that URL with the Murmurations index.
 4. *(Optional)* Add `relationships` to your profile and publish an
-   Offer-or-Want profile.
+   Offer-or-Want profile — copy `profiles/vdl-offer-murmurations-profile.json`
+   as a starting point.
 5. *(Optional)* Wire your RSS feed for live updates (see `docs/`).
 
 You never hand your data to this repo. You publish it where you control it; the

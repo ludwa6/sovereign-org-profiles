@@ -113,7 +113,8 @@ Murmurations + RSS avoids this because:
 1. Both protocols are **already running** — real nodes, real aggregators, real
    index infrastructure.
 2. The **Offer-or-Want** schema (`offers_wants_schema`) was built for exactly
-   this matching use case.
+   this matching use case — see the worked example at
+   [`profiles/vdl-offer-murmurations-profile.json`](../profiles/vdl-offer-murmurations-profile.json).
 3. The minimal viable contribution is a JSON file and an RSS feed — both of
    which most orgs already have (WordPress ships RSS; the JSON is an afternoon
    of work).
