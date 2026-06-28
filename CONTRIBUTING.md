@@ -92,6 +92,10 @@ work, but because it pulls the project off its "gardens, not platforms" footing.
   a human makes the call.
 - Be kind and assume good faith. This is a collaboration across very different
   levels of technical comfort, and that's the point.
+- This repo is built across two coordinated Claude surfaces — a **Planner** and
+  a **Coder**. If you're curious how that division works, see
+  [*Cross-surface collaboration*](AGENTS.md#cross-surface-collaboration-planner--coder)
+  in `AGENTS.md`.
 
 By contributing, you agree that your contributions are licensed under the
 project's [MIT License](LICENSE.md).
