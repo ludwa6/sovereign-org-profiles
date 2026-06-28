@@ -15,10 +15,11 @@ syndicated to and mapped by any aggregator that asks.
 ## The idea in one paragraph
 
 There is one piece of information that is fundamental to an organization — its
-**profile** (who it is, where it is, what it's about) — and two that are
-optional: **relations** (machine-readable links to other orgs) and **offers &
-needs** (what it can give, what it's looking for). When each org publishes
-these at its own canonical URL in an open, standard format, the network effects
+**Organisation profile** (who it is, where it is, what it's about, plus a
+machine-readable **`relationships`** field linking to other nodes) — and one
+optional companion: an **Offer-or-Want profile** (what it can give, what it's
+looking for). When each org publishes these at its own canonical URL in an
+open, standard format, the network effects
 that platforms normally hoard become a commons: maps, directories, and matching
 services can all read the same sovereign sources, and the org never has to
 maintain its identity in five different databases that drift out of date.
@@ -30,13 +31,14 @@ maintain its identity in five different databases that drift out of date.
 - **Organizations, not people.** Person profiles are deliberately out of scope
   for now (that thread is being coordinated separately, around community
   legibility and activity-sharing). Orgs first.
-- **One required object, two optional.**
-  - **Profile** *(required)* — stable identity: name, location, mission, tags,
-    contact.
-  - **Relations** *(optional)* — explicit, machine-readable links to other
-    nodes (a hub naming its affiliated orgs; an offer naming its offering org).
-  - **Offers & Needs** *(optional)* — goods, services, land, skills offered or
-    sought.
+- **One required profile, one optional — relationships are a field, not a
+  separate object.**
+  - **Organisation profile** *(required)* — stable identity: name, location,
+    mission, tags, contact, plus a **`relationships`** field: explicit,
+    machine-readable links to other nodes (a hub naming its affiliated orgs; an
+    offer naming its offering org).
+  - **Offer-or-Want profile** *(optional)* — goods, services, land, skills
+    offered or sought.
 - **Canonical source = one org-controlled URL.** Everything else is a copy or a
   view. The committed JSON files in this repo are **reference examples**, not
   sources of truth.
@@ -92,7 +94,7 @@ No aggregator owns the data; each one reads from the canonical URLs.
 ## What's in this repo
 
 ```
-/profiles/    Example Murmurations profile JSONs (VdL, Mud Valley, Novas Descobertas)
+/profiles/    Example Murmurations Organisation profiles (VdL, Mud Valley, Novas Descobertas)
 /schema/      AEO/GEO assets per org — schema.org HTML + llms.txt
 /docs/        The model, the RSS/RSS-Cloud paths, links to Murmurations docs
 /README.md    You are here
@@ -110,7 +112,8 @@ schema — copy one, change the fields, host it at your own URL, register it.
 2. Host it at a stable URL on a domain you control
    (e.g. `https://your-org.example/murmurations-profile.json`).
 3. Register that URL with the Murmurations index.
-4. *(Optional)* Add `relations` and an `offers/needs` profile.
+4. *(Optional)* Add `relationships` to your profile and publish an
+   Offer-or-Want profile.
 5. *(Optional)* Wire your RSS feed for live updates (see `docs/`).
 
 You never hand your data to this repo. You publish it where you control it; the
