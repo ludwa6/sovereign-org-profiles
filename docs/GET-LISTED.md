@@ -53,6 +53,13 @@ Prefer to start from a real example rather than a blank form? Copy one of the
 profiles in [`/profiles/`](../profiles/), change the fields to match your org,
 and host the result — that's Tier 1 or 2 in one move.
 
+This repo eats its own dog food: the example profiles are themselves hosted at
+Tier 1, over **GitHub Pages of this repo**, so they resolve as fetchable JSON
+at stable project-controlled URLs — for example
+<https://ludwa6.github.io/sovereign-org-profiles/profiles/vdl-murmurations-profile.json>.
+Those are the URLs you'd register with the Index Updater below; the full list
+is in the [README "Live profiles"](../README.md#live-profiles) section.
+
 ---
 
 ## The one step that actually puts you on the map

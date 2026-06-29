@@ -107,6 +107,28 @@ copy one, change the fields, host it at your own URL, register it. Three are
 Organisation profiles; `vdl-offer-murmurations-profile.json` is an
 Offer-or-Want, showing the matching layer in practice.
 
+### Live profiles
+
+The example profiles are published as fetchable JSON over **GitHub Pages**
+(Tier 1 — a host the project controls; see
+[`docs/GET-LISTED.md`](docs/GET-LISTED.md)). These URLs are what you register
+with the Murmurations index — the index hashes the URL and fetches the JSON
+on demand:
+
+- **Vale da Lama** *(live node)* —
+  <https://ludwa6.github.io/sovereign-org-profiles/profiles/vdl-murmurations-profile.json>
+  - Offer-or-Want —
+    <https://ludwa6.github.io/sovereign-org-profiles/profiles/vdl-offer-murmurations-profile.json>
+- **Mud Valley** —
+  <https://ludwa6.github.io/sovereign-org-profiles/profiles/mud-valley-murmurations-profile.json>
+- **Novas Descobertas** —
+  <https://ludwa6.github.io/sovereign-org-profiles/profiles/novas-descobertas-murmurations-profile.json>
+
+Note the distinction: a profile's `primary_url` is the **org's website**
+(`https://valedalama.net`) and stays as-is; the **node/profile location** is
+the Pages URL above. Migrating to a fully sovereign Tier-2 URL later is just
+re-registering the new URL — the JSON content never changes.
+
 ---
 
 ## How to participate
