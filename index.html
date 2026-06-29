@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Sovereign Org Profiles — live profiles</title>
+  <style>
+    :root { color-scheme: light dark; }
+    body {
+      font: 16px/1.6 -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      max-width: 46rem;
+      margin: 0 auto;
+      padding: 2.5rem 1.25rem 4rem;
+      color: #1a1a1a;
+      background: #fafafa;
+    }
+    @media (prefers-color-scheme: dark) {
+      body { color: #e6e6e6; background: #16181c; }
+      a { color: #7cb3ff; }
+      code { background: #2a2d33; }
+      .node { background: #1d2026; border-color: #2a2d33; }
+    }
+    h1 { font-size: 1.6rem; margin: 0 0 .25rem; }
+    h2 { font-size: 1.1rem; margin: 2rem 0 .5rem; }
+    .lede { color: #555; margin-top: 0; }
+    @media (prefers-color-scheme: dark) { .lede { color: #9aa0a8; } }
+    a { color: #1a5fb4; }
+    code { background: #eee; padding: .1rem .35rem; border-radius: 4px; font-size: .9em; }
+    ul { padding-left: 1.1rem; }
+    li { margin: .35rem 0; }
+    .node {
+      background: #fff;
+      border: 1px solid #e5e5e5;
+      border-radius: 8px;
+      padding: .9rem 1.1rem;
+      margin: .75rem 0;
+    }
+    .node h3 { margin: 0 0 .4rem; font-size: 1rem; }
+    .tag {
+      display: inline-block;
+      font-size: .72rem;
+      font-weight: 600;
+      letter-spacing: .03em;
+      text-transform: uppercase;
+      color: #1a7f37;
+      background: #dafbe1;
+      border-radius: 999px;
+      padding: .1rem .5rem;
+      margin-left: .4rem;
+      vertical-align: middle;
+    }
+    @media (prefers-color-scheme: dark) { .tag { color: #3fb950; background: #12331c; } }
+    .word { word-break: break-all; font-size: .9em; }
+    footer { margin-top: 3rem; font-size: .85rem; color: #777; }
+  </style>
+</head>
+<body>
+  <h1>Sovereign Org Profiles</h1>
+  <p class="lede">
+    An open, composable way for organizations to publish the information that
+    defines them — once, at a URL they control — so any network or agent can
+    discover and map it without a platform capturing the data.
+  </p>
+  <p>
+    See the <a href="https://github.com/ludwa6/sovereign-org-profiles">repository</a>,
+    the <a href="https://github.com/ludwa6/sovereign-org-profiles/blob/main/README.md">README</a>,
+    and the plain-language on-ramp
+    <a href="https://github.com/ludwa6/sovereign-org-profiles/blob/main/docs/GET-LISTED.md">Get listed</a>.
+  </p>
+
+  <h2>Live profiles</h2>
+  <p>
+    These are the canonical, fetchable JSON profiles served from this site.
+    Each URL is what you register with the
+    <a href="https://murmurmaps.murmurations.network/index-updater">Murmurations Index Updater</a> —
+    the index stores the URL and a hash, then fetches the profile from here.
+  </p>
+
+  <div class="node">
+    <h3>Vale da Lama <span class="tag">live node</span></h3>
+    <ul>
+      <li>Organisation profile —
+        <a class="word" href="profiles/vdl-murmurations-profile.json">profiles/vdl-murmurations-profile.json</a></li>
+      <li>Offer-or-Want · volunteer placements —
+        <a class="word" href="profiles/vdl-offer-murmurations-profile.json">profiles/vdl-offer-murmurations-profile.json</a></li>
+      <li>Offer-or-Want · farm internship (registration opens July 2026) —
+        <a class="word" href="profiles/vdl-internship-offer-murmurations-profile.json">profiles/vdl-internship-offer-murmurations-profile.json</a></li>
+    </ul>
+  </div>
+
+  <div class="node">
+    <h3>Mud Valley</h3>
+    <ul>
+      <li>Organisation profile —
+        <a class="word" href="profiles/mud-valley-murmurations-profile.json">profiles/mud-valley-murmurations-profile.json</a></li>
+    </ul>
+  </div>
+
+  <div class="node">
+    <h3>Novas Descobertas</h3>
+    <ul>
+      <li>Organisation profile —
+        <a class="word" href="profiles/novas-descobertas-murmurations-profile.json">profiles/novas-descobertas-murmurations-profile.json</a></li>
+    </ul>
+  </div>
+
+  <p>
+    A profile's <code>primary_url</code> is the org's own website; the
+    <em>node location</em> registered with the index is the URL above. Moving to
+    a fully sovereign URL later is just re-registering the new URL — the JSON
+    content never changes.
+  </p>
+
+  <footer>
+    Worked examples from the Vale da Lama bioregional network. Built in the open
+    as a multi-agent, multi-human collaboration.
+  </footer>
+</body>
+</html>
