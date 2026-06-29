@@ -1,0 +1,32 @@
+{
+  "linked_schemas": ["offers_wants_schema-v0.1.0"],
+  "exchange_type": "offer",
+  "item_type": "service",
+  "transaction_type": ["receive-donate"],
+  "title": "Farm internship at Quinta Vale da Lama — registration opens July 2026",
+  "description": "Vale da Lama is opening registration in July 2026 for its 6-month residential regenerative-farming internship (next cohort begins early November 2026). Interns work alongside the land team in organic market gardening and holistic farm care on a 43-hectare regenerative farm in SW Algarve, Portugal, and complete a full Permaculture Design Course. Shared accommodation and three vegetarian meals are provided; a 100-euro administration fee applies. Suited to mature, motivated people seeking deep, hands-on grounding in regenerative land stewardship.",
+  "tags": [
+    "internship",
+    "permaculture",
+    "regenerative agriculture",
+    "agroforestry",
+    "market gardening",
+    "land stewardship",
+    "education",
+    "farm stay",
+    "Portugal",
+    "Algarve",
+    "Europe"
+  ],
+  "geographic_scope": "international",
+  "geolocation": {
+    "lat": 37.140639,
+    "lon": -8.632694
+  },
+  "image": "https://www.valedalama.net/wp-content/uploads/2021/10/logo-vale-da-lama-image-background-02-e1638186825871.jpg",
+  "details_url": "https://www.valedalama.net/internship-on-the-farm/",
+  "contact_details": {
+    "email": "info@valedalama.net",
+    "contact_form": "https://www.valedalama.net/contact/"
+  }
+}
