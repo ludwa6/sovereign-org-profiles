@@ -71,7 +71,7 @@ land offer, a 72-hour availability window — need a stream. RSS is that layer
 to push: subscribers register a callback and get pinged on update, peer-to-peer,
 with no hub intermediary. Latency collapses from hours to seconds.
 
-> See `docs/` for the WordPress (native RSS Cloud) vs. WebFlow (webhook bridge
+> See `docs/` for the WordPress (RSS Cloud, enabled via plugin/mu-plugin) vs. WebFlow (webhook bridge
 > or WebSub hub) paths, lifted from the project's design note.
 
 ---

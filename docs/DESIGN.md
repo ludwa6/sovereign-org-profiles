@@ -92,8 +92,13 @@ RSS Cloud is **peer-to-peer** — the feed's own endpoint notifies subscribers,
 with no hub intermediary. A cleaner fit for "gardens, not platforms" than
 hub-based alternatives.
 
-- **WordPress:** RSS Cloud support is native and built in. No configuration; the
-  `<cloud>` element is already present in the feed.
+- **WordPress:** core does **not** emit `<cloud>` by default — confirmed absent
+  from the live VdL feed (WordPress 7.0) on 2026-07-01 (`curl -sL
+  https://www.valedalama.net/feed/ | grep -ic cloud` → `0`). Emitting it
+  requires enabling RSS Cloud — a plugin (e.g. Dave Winer's RSSCloud) or a small
+  mu-plugin — so the feed carries a
+  `<cloud … registerProcedure=… protocol="rss-cloud">` element. Once present,
+  the peer-to-peer subscribe→publish→ping round-trip works as described above.
 - **WebFlow (and other hosts without `<cloud>`):** two paths —
   - **Webhook bridge (preferred):** a thin service receives the CMS's
     publish-webhook and pings registered RSS Cloud subscribers. One small,
