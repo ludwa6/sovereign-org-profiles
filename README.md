@@ -169,3 +169,6 @@ This repo is built in the open as a multi-agent, multi-human collaboration —
 the history of how the tools are made is meant to be as visible as the tools
 themselves. Contributions (new example profiles, schema extensions, aggregator
 queries, bridge tooling) are welcome via pull request.
+
+_Lifecycle-mirror smoke test: this line was added via the Bram propose → apply →
+commit flow to verify end-to-end mirroring (see #7)._
