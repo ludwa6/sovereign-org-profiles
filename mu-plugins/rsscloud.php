@@ -193,13 +193,17 @@ function vdl_rsscloud_handle_register( WP_REST_Request $request ) {
 		if ( vdl_rsscloud_feed_at_capacity( $store, $feed ) ) {
 			return vdl_rsscloud_notify_result( false, 'Subscriber capacity reached for this feed.' );
 		}
-		if ( ! vdl_rsscloud_verify_subscriber( $callback, $feed ) ) {
+		// On success this returns the redirect-resolved callback (e.g. a
+		// port-80 registration that 301s to https is stored as its https
+		// form), or false on failure.
+		$resolved = vdl_rsscloud_verify_subscriber( $callback, $feed );
+		if ( false === $resolved ) {
 			return vdl_rsscloud_notify_result( false, 'Subscriber verification failed (challenge not echoed).' );
 		}
-		$key           = md5( $callback . '|' . $feed );
+		$key           = md5( $resolved . '|' . $feed );
 		$now           = time();
 		$store[ $key ] = array(
-			'callback' => $callback,
+			'callback' => $resolved,
 			'feed'     => $feed,
 			'created'  => isset( $store[ $key ]['created'] ) ? $store[ $key ]['created'] : $now,
 			'expires'  => $now + VDL_RSSCLOUD_TTL, // re-registration renews.
@@ -220,8 +224,18 @@ function vdl_rsscloud_handle_register( WP_REST_Request $request ) {
 
 /**
  * Verify the caller controls the callback: GET it with a random challenge and a
- * `url` param, expect HTTP 200 echoing the challenge. Overridable once FeedLand's
- * dialect is confirmed (see the OPEN DIALECT QUESTION note above).
+ * `url` param, following up to a few redirects, expecting HTTP 200 echoing the
+ * challenge. A subscriber may advertise a port-80 (http) callback yet serve it
+ * over https behind a 301 (this is how FeedLand registers); following the
+ * redirect reaches that echo, and the redirect-resolved URL is what we store so
+ * later notify POSTs go straight to https (a 301 on POST drops the body).
+ *
+ * Returns the effective callback string (scheme://host:port/path) on success —
+ * the redirect-resolved form when a redirect was followed, otherwise the
+ * originally-registered callback — or false on failure. Overridable once
+ * FeedLand's dialect is confirmed (see the OPEN DIALECT QUESTION note above).
+ *
+ * @return string|false
  */
 function vdl_rsscloud_verify_subscriber( $callback, $feed ) {
 	$challenge = wp_generate_password( 24, false );
@@ -237,16 +251,25 @@ function vdl_rsscloud_verify_subscriber( $callback, $feed ) {
 		$probe,
 		array(
 			'timeout'     => VDL_RSSCLOUD_HTTP_TIMEOUT,
-			'redirection' => 0,
+			'redirection' => 3,
 		)
 	);
 
 	$verified = false;
+	$resolved = $callback;
 	if ( ! is_wp_error( $response )
 		&& 200 === (int) wp_remote_retrieve_response_code( $response )
 		&& hash_equals( $challenge, trim( wp_remote_retrieve_body( $response ) ) )
 	) {
-		$verified = true;
+		// Normalise the URL WP actually landed on (post-redirect) back to a
+		// bare scheme://host:port/path callback, dropping the challenge query.
+		$final = vdl_rsscloud_rebuild_callback( vdl_rsscloud_final_url( $response, $probe ) );
+		// Re-run the SSRF guard on the final host: an http→https redirect can
+		// legitimately change the host, and we will POST to it on publish.
+		if ( '' !== $final && vdl_rsscloud_callback_is_safe( $final ) ) {
+			$verified = true;
+			$resolved = $final;
+		}
 	}
 
 	/**
@@ -254,7 +277,37 @@ function vdl_rsscloud_verify_subscriber( $callback, $feed ) {
 	 * dialect does not echo the challenge (e.g. classic Winer rssCloud), once
 	 * you have confirmed reachability another way.
 	 */
-	return (bool) apply_filters( 'rsscloud_verify_subscriber', $verified, $callback, $challenge, $feed );
+	$verified = (bool) apply_filters( 'rsscloud_verify_subscriber', $verified, $callback, $challenge, $feed );
+
+	return $verified ? $resolved : false;
+}
+
+/**
+ * Pull the final URL WP followed (after any redirects) out of an HTTP response,
+ * falling back to $fallback when the underlying response object is unavailable.
+ */
+function vdl_rsscloud_final_url( $response, $fallback ) {
+	if ( isset( $response['http_response'] ) && is_object( $response['http_response'] )
+		&& method_exists( $response['http_response'], 'get_response_object' )
+	) {
+		$obj = $response['http_response']->get_response_object();
+		if ( $obj && ! empty( $obj->url ) ) {
+			return (string) $obj->url;
+		}
+	}
+	return $fallback;
+}
+
+/** Normalise a URL to a bare scheme://host:port/path callback (no query/fragment). */
+function vdl_rsscloud_rebuild_callback( $url ) {
+	$p = wp_parse_url( (string) $url );
+	if ( empty( $p['host'] ) || empty( $p['scheme'] ) ) {
+		return '';
+	}
+	$scheme = $p['scheme'];
+	$port   = isset( $p['port'] ) ? (int) $p['port'] : ( 'https' === $scheme ? 443 : 80 );
+	$path   = isset( $p['path'] ) && '' !== $p['path'] ? $p['path'] : '/';
+	return sprintf( '%s://%s:%d%s', $scheme, $p['host'], $port, $path );
 }
 
 /* -------------------------------------------------------------------------
