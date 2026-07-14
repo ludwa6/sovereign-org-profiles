@@ -343,7 +343,10 @@ function vdl_rsscloud_dispatch_notifications( $feed ) {
 	$changed = false;
 
 	foreach ( $store as $key => $sub ) {
-		if ( $sub['feed'] !== $feed ) {
+		// Trailing-slash-insensitive match: WP's get_feed_link() yields the
+		// pretty permalink WITH a slash (.../feed/), while an aggregator such as
+		// FeedLand normalises and stores the subscription WITHOUT one (.../feed).
+		if ( rtrim( $sub['feed'], '/' ) !== rtrim( $feed, '/' ) ) {
 			continue;
 		}
 		$response = wp_remote_post(
@@ -352,7 +355,10 @@ function vdl_rsscloud_dispatch_notifications( $feed ) {
 				'timeout'     => VDL_RSSCLOUD_HTTP_TIMEOUT,
 				'redirection' => 0,
 				'blocking'    => true, // we are in cron; capture failures to prune dead callbacks.
-				'body'        => array( 'url' => $feed ),
+				// Notify with the subscriber's OWN registered feed URL, not the
+				// site-canonical $feed, so the notified string is byte-identical
+				// to what the subscriber stored and matches against.
+				'body'        => array( 'url' => $sub['feed'] ),
 			)
 		);
 
