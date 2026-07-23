@@ -1,1 +1,7 @@
 .DS_Store
+
+# Bram local state — per-machine, never shared
+.bram.json
+.claude/
+CLAUDE.md
+resources/
