@@ -94,6 +94,11 @@ const VDL_RSSCLOUD_GC_HOOK      = 'vdl_rsscloud_gc';
 
 add_action( 'rss2_head', 'vdl_rsscloud_emit_cloud_element' );
 
+// Declare the source: namespace on <rss> so <source:cloud> is XML-valid.
+add_action( 'rss2_ns', function () {
+	echo 'xmlns:source="http://source.smallpict.com/2014/07/12/theSourceNamespace.html"' . "\n";
+} );
+
 function vdl_rsscloud_emit_cloud_element() {
 	$home = wp_parse_url( home_url() );
 	if ( empty( $home['host'] ) ) {
@@ -110,6 +115,22 @@ function vdl_rsscloud_emit_cloud_element() {
 		esc_attr( $host ),
 		$port,
 		esc_attr( $path )
+	);
+
+	// <cloud> has no scheme attribute, so FeedLand (feedlanddatabase) builds
+	// "http://domain:port/path" and POSTs plain HTTP to our :443 SSL port,
+	// failing silently. reallysimple reads a channel-level <source:cloud>
+	// whose text is the COMPLETE URL, scheme included, taken verbatim — emit
+	// it so https endpoints are registrable (fixes #13).
+	$cloud_url = $scheme . '://' . $host;
+	if ( isset( $home['port'] ) ) { // only when home_url() carries an explicit port
+		$cloud_url .= ':' . (int) $home['port'];
+	}
+	$cloud_url .= $path;
+
+	printf(
+		"<source:cloud>%s</source:cloud>\n",
+		esc_url( $cloud_url )
 	);
 }
 
