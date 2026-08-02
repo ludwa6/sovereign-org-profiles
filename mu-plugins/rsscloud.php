@@ -79,7 +79,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 const VDL_RSSCLOUD_OPTION       = 'vdl_rsscloud_subscriptions'; // stored subscriptions
-const VDL_RSSCLOUD_TTL          = 86400;   // subscription lifetime, seconds (~24h per spec)
+const VDL_RSSCLOUD_TTL          = 604800;  // subscription lifetime, seconds (7 days)
 const VDL_RSSCLOUD_MAX_PER_FEED = 1000;    // subscriber cap per feed
 const VDL_RSSCLOUD_RL_MAX       = 30;      // max registrations per IP per window
 const VDL_RSSCLOUD_RL_WINDOW    = 3600;    // rate-limit window, seconds
