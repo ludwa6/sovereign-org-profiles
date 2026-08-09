@@ -45,6 +45,10 @@
     {
       "predicate_url": "https://schema.org/affiliation",
       "object_url": "https://valedalama.net"
+    },
+    {
+      "predicate_url": "https://schema.org/affiliation",
+      "object_url": "https://casavaledalama.com"
     }
   ]
 }
