@@ -55,7 +55,20 @@ profile, and there is **one** field where Tier 0 wins.
 
 `object_url` values match each target's `primary_url` exactly so the
 edges resolve: `https://valedalama.net`, `https://mudvalley.org`,
-`https://novasdescobertas.org/en/`, `https://casavaledalama.com`.
+`https://novasdescobertas.org`, `https://casavaledalama.com`.
+
+### Novas Descobertas canonical URL — a deliberate correction
+
+AND's `primary_url` was set to `https://novasdescobertas.org` (bare),
+not `…/en/`. This is a **deliberate correction, not a reconciliation
+outcome** — ND has never been in the Index, so there is no Tier 0 copy
+to weigh. The bare domain serves HTTP 200 directly (no redirect,
+verified 2026-08-09), so it is the truer canonical identity. Because the
+map matches `object_url` to `primary_url` after stripping scheme, `www.`
+and trailing slash **but keeping the path**, VdL's ND relationship
+`object_url` was changed to the bare domain in the **same commit**, so
+the Quinta ↔ ND edge stays matched. (`schema/*-schema-org.html` keep
+their `/en/` deep links — different consumers, legitimate page URLs.)
 
 ## Per-field decisions where the copies genuinely differed
 

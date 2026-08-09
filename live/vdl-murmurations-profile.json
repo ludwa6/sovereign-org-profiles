@@ -47,7 +47,7 @@
   "relationships": [
     {
       "predicate_url": "https://schema.org/affiliation",
-      "object_url": "https://novasdescobertas.org/en/"
+      "object_url": "https://novasdescobertas.org"
     },
     {
       "predicate_url": "https://schema.org/affiliation",
