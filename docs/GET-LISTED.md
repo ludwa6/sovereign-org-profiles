@@ -47,7 +47,7 @@ Pick the row that matches where you are today. You can move up later.
 |---|---|---|---|---|
 | **0 — Listed today** | [MurmurMaps Profile Generator](https://murmurmaps.murmurations.network/profile-generator) (a form, no raw JSON) | MurmurMaps hosting | URL on *their* domain | Anyone with zero website and no time. In the index this afternoon. |
 | **1 — Sovereign-ish, still simple** | Same MurmurMaps form | A dead-simple host you control: GitHub Pages, Netlify Drop, any static file host | You own the file; URL on a generic host | People who can follow a short guide and want to own their data. |
-| **2 — Fully sovereign** | MurmurMaps form, or the Murmurations WordPress plugin | Your own domain: WordPress + plugin, or a static `your-org.example/murmurations-profile.json` | Canonical URL on a domain you control | Orgs with a website (or willing to point a domain). |
+| **2 — Fully sovereign** | MurmurMaps form, or the Murmurations WordPress plugin | Your own domain: WordPress + plugin, or static files under `your-org.example/murmurations/` | Canonical URL on a domain you control | Orgs with a website (or willing to point a domain). |
 
 Prefer to start from a real example rather than a blank form? Copy one of the
 example templates in [`/profiles/`](../profiles/), change the fields to match
@@ -65,6 +65,38 @@ But per the canonical-source decision in
 domain** (Tier 2), and those Tier-2 URLs are what get registered with the Index
 Updater below — the Tier-1 copies here are **not** registered. The full staging
 list is in the [README "Live profiles"](../README.md#live-profiles) section.
+
+---
+
+## Where the file lives — the path convention
+
+Once you host on your own domain (Tier 2), the only real decision is the
+URL. Two layouts are valid:
+
+- **Recommended — a `/murmurations/` directory.** Put your organisation
+  profile at `https://your-org.example/murmurations/profile.json`, and
+  any additional profiles alongside it:
+
+  ```
+  your-org.example/murmurations/profile.json
+  your-org.example/murmurations/offer-volunteering.json
+  your-org.example/murmurations/offer-internship.json
+  ```
+
+  This scales to any number of profiles — an Organisation profile plus
+  one or more Offer-or-Wants — without inventing a second convention
+  later. It is the layout this project's own orgs use.
+
+- **Single-file alternative.** If you publish exactly one profile, the
+  flat form `https://your-org.example/murmurations-profile.json` is
+  simpler and still valid.
+
+> **Your profile's URL is its identity.** The index hashes the URL, so
+> changing it later means registering a **new** node and retiring the old
+> one — not an in-place edit. Pick a path you can keep. And prefer your
+> **bare domain** for `primary_url` (`https://your-org.example`, not
+> `https://your-org.example/en/`): language- or section-paths are exactly
+> what churns.
 
 ---
 
