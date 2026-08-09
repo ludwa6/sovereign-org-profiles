@@ -50,15 +50,21 @@ Pick the row that matches where you are today. You can move up later.
 | **2 — Fully sovereign** | MurmurMaps form, or the Murmurations WordPress plugin | Your own domain: WordPress + plugin, or a static `your-org.example/murmurations-profile.json` | Canonical URL on a domain you control | Orgs with a website (or willing to point a domain). |
 
 Prefer to start from a real example rather than a blank form? Copy one of the
-profiles in [`/profiles/`](../profiles/), change the fields to match your org,
-and host the result — that's Tier 1 or 2 in one move.
+example templates in [`/profiles/`](../profiles/), change the fields to match
+your org, and host the result — that's Tier 1 or 2 in one move. For complete,
+real profiles to learn from, see the Vale da Lama network profiles under
+[`/live/`](../live/).
 
-This repo eats its own dog food: the example profiles are themselves hosted at
-Tier 1, over **GitHub Pages of this repo**, so they resolve as fetchable JSON
-at stable project-controlled URLs — for example
-<https://ludwa6.github.io/sovereign-org-profiles/profiles/vdl-murmurations-profile.json>.
-Those are the URLs you'd register with the Index Updater below; the full list
-is in the [README "Live profiles"](../README.md#live-profiles) section.
+This repo keeps its own profiles at Tier 1, over **GitHub Pages of this repo**,
+as a **staging and validation** ground — they resolve as fetchable JSON at
+stable project-controlled URLs, for example
+<https://ludwa6.github.io/sovereign-org-profiles/live/vdl-murmurations-profile.json>.
+But per the canonical-source decision in
+[#19](https://github.com/ludwa6/sovereign-org-profiles/issues/19), the
+**canonical** copy for each of our own orgs will live on that org's **own
+domain** (Tier 2), and those Tier-2 URLs are what get registered with the Index
+Updater below — the Tier-1 copies here are **not** registered. The full staging
+list is in the [README "Live profiles"](../README.md#live-profiles) section.
 
 ---
 
@@ -101,8 +107,9 @@ No rework. The thing you build this afternoon is the thing you keep.
 None of these are required to be on the map. Add them when they're useful.
 
 - **Relationships.** Add a `relationships` field to your Organisation profile to
-  link to other nodes — a hub naming its affiliated orgs, for example. See the
-  VdL example in [`/profiles/`](../profiles/).
+  link to other nodes — a hub naming its affiliated orgs, for example. Each edge
+  is `{"predicate_url": "…", "object_url": "…"}`. See the example template in
+  [`/profiles/`](../profiles/) or the live VdL profile in [`/live/`](../live/).
 - **Offer-or-Want.** Publish a separate Offer-or-Want profile to put a specific
   offer (land, skills, a resource) or a specific need into the matching layer.
 - **A live update stream.** Wire your RSS feed so time-sensitive changes (a new

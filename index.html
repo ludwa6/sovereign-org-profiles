@@ -70,44 +70,49 @@
 
   <h2>Live profiles</h2>
   <p>
-    These are the canonical, fetchable JSON profiles served from this site.
-    Each URL is what you register with the
-    <a href="https://murmurmaps.murmurations.network/index-updater">Murmurations Index Updater</a> —
-    the index stores the URL and a hash, then fetches the profile from here.
+    These are the real network profiles, served from this site over GitHub
+    Pages as the project's <strong>staging and validation</strong> copies
+    (Tier 1). Per the canonical-source decision in
+    <a href="https://github.com/ludwa6/sovereign-org-profiles/issues/19">#19</a>,
+    the <strong>canonical</strong> profile for each org will be served from that
+    org's <strong>own domain</strong> (Tier 2), and those Tier-2 URLs — not
+    these — are what gets registered with the
+    <a href="https://murmurmaps.murmurations.network/index-updater">Murmurations Index Updater</a>.
+    Nothing here is registered yet; registration is Phase B.
   </p>
 
   <div class="node">
-    <h3>Vale da Lama <span class="tag">live node</span></h3>
+    <h3>Quinta Vale da Lama</h3>
     <ul>
       <li>Organisation profile —
-        <a class="word" href="profiles/vdl-murmurations-profile.json">profiles/vdl-murmurations-profile.json</a></li>
+        <a class="word" href="live/vdl-murmurations-profile.json">live/vdl-murmurations-profile.json</a></li>
       <li>Offer-or-Want · volunteer placements —
-        <a class="word" href="profiles/vdl-offer-murmurations-profile.json">profiles/vdl-offer-murmurations-profile.json</a></li>
+        <a class="word" href="live/vdl-offer-murmurations-profile.json">live/vdl-offer-murmurations-profile.json</a></li>
       <li>Offer-or-Want · farm internship (registration opens July 2026) —
-        <a class="word" href="profiles/vdl-internship-offer-murmurations-profile.json">profiles/vdl-internship-offer-murmurations-profile.json</a></li>
+        <a class="word" href="live/vdl-internship-offer-murmurations-profile.json">live/vdl-internship-offer-murmurations-profile.json</a></li>
     </ul>
   </div>
 
   <div class="node">
-    <h3>Mud Valley</h3>
+    <h3>Mud Valley Foundation</h3>
     <ul>
       <li>Organisation profile —
-        <a class="word" href="profiles/mud-valley-murmurations-profile.json">profiles/mud-valley-murmurations-profile.json</a></li>
+        <a class="word" href="live/mud-valley-murmurations-profile.json">live/mud-valley-murmurations-profile.json</a></li>
     </ul>
   </div>
 
   <div class="node">
-    <h3>Novas Descobertas</h3>
+    <h3>Novas Descobertas Association</h3>
     <ul>
       <li>Organisation profile —
-        <a class="word" href="profiles/novas-descobertas-murmurations-profile.json">profiles/novas-descobertas-murmurations-profile.json</a></li>
+        <a class="word" href="live/novas-descobertas-murmurations-profile.json">live/novas-descobertas-murmurations-profile.json</a></li>
     </ul>
   </div>
 
   <p>
     A profile's <code>primary_url</code> is the org's own website; the
-    <em>node location</em> registered with the index is the URL above. Moving to
-    a fully sovereign URL later is just re-registering the new URL — the JSON
+    <em>node location</em> is wherever the JSON is hosted. Moving from Tier 1 to
+    a sovereign Tier-2 URL later is just registering the new URL — the JSON
     content never changes.
   </p>
 

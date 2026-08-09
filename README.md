@@ -94,40 +94,51 @@ No aggregator owns the data; each one reads from the canonical URLs.
 ## What's in this repo
 
 ```
-/profiles/    Example Murmurations profiles: three Organisation profiles (VdL,
-              Mud Valley, Novas Descobertas) + one Offer-or-Want (VdL volunteer offer)
+/profiles/    Illustrative example templates, safe to copy: one Organisation
+              profile + one Offer-or-Want, with placeholder content
+/live/        The real Vale da Lama network profiles: three Organisation
+              profiles (VdL, Mud Valley, Novas Descobertas) + two Offer-or-Wants
 /schema/      AEO/GEO assets per org — schema.org HTML + llms.txt
 /docs/        The model, the RSS/RSS-Cloud paths, links to Murmurations docs
 /README.md    You are here
 ```
 
-The worked examples come from the Vale da Lama bioregional network. They exist
-so a newcomer can see a complete, real profile rather than an abstract schema —
-copy one, change the fields, host it at your own URL, register it. Three are
-Organisation profiles; `vdl-offer-murmurations-profile.json` is an
-Offer-or-Want, showing the matching layer in practice.
+`profiles/` holds **example templates** with placeholder content — a safe
+starting point to copy. `live/` holds the **real** profiles of the Vale da Lama
+bioregional network — three Organisation profiles plus two Offer-or-Wants — so a
+newcomer can also see complete, real profiles rather than an abstract schema.
+Copy a template (or a live profile), change the fields, host it at a URL **you**
+control, and register it.
 
 ### Live profiles
 
-The example profiles are published as fetchable JSON over **GitHub Pages**
-(Tier 1 — a host the project controls; see
-[`docs/GET-LISTED.md`](docs/GET-LISTED.md)). These URLs are what you register
-with the Murmurations index — the index hashes the URL and fetches the JSON
-on demand:
+The real network profiles live under [`live/`](live/) and are published as
+fetchable JSON over **GitHub Pages** (Tier 1 — a host the project controls; see
+[`docs/GET-LISTED.md`](docs/GET-LISTED.md)):
 
-- **Vale da Lama** *(live node)* —
-  <https://ludwa6.github.io/sovereign-org-profiles/profiles/vdl-murmurations-profile.json>
-  - Offer-or-Want —
-    <https://ludwa6.github.io/sovereign-org-profiles/profiles/vdl-offer-murmurations-profile.json>
-- **Mud Valley** —
-  <https://ludwa6.github.io/sovereign-org-profiles/profiles/mud-valley-murmurations-profile.json>
-- **Novas Descobertas** —
-  <https://ludwa6.github.io/sovereign-org-profiles/profiles/novas-descobertas-murmurations-profile.json>
+- **Quinta Vale da Lama** —
+  <https://ludwa6.github.io/sovereign-org-profiles/live/vdl-murmurations-profile.json>
+  - Offer-or-Want (volunteer placements) —
+    <https://ludwa6.github.io/sovereign-org-profiles/live/vdl-offer-murmurations-profile.json>
+  - Offer-or-Want (farm internship) —
+    <https://ludwa6.github.io/sovereign-org-profiles/live/vdl-internship-offer-murmurations-profile.json>
+- **Mud Valley Foundation** —
+  <https://ludwa6.github.io/sovereign-org-profiles/live/mud-valley-murmurations-profile.json>
+- **Novas Descobertas Association** —
+  <https://ludwa6.github.io/sovereign-org-profiles/live/novas-descobertas-murmurations-profile.json>
+
+These Tier-1 URLs are the project's **staging and validation** copies. Per the
+canonical-source decision in
+[#19](https://github.com/ludwa6/sovereign-org-profiles/issues/19), the
+**canonical** profile for each org will be served from that org's **own domain**
+(Tier 2, e.g. `https://valedalama.net/murmurations-profile.json`), and those
+Tier-2 URLs — not these — are what gets registered with the Murmurations index.
+Nothing here is registered yet; registration is Phase B.
 
 Note the distinction: a profile's `primary_url` is the **org's website**
 (`https://valedalama.net`) and stays as-is; the **node/profile location** is
-the Pages URL above. Migrating to a fully sovereign Tier-2 URL later is just
-re-registering the new URL — the JSON content never changes.
+wherever the JSON is hosted. Moving from Tier 1 to a sovereign Tier-2 URL is
+just registering the new URL — the JSON content never changes.
 
 ---
 
@@ -142,8 +153,8 @@ New here and not technical? Start with the plain-language on-ramp:
    (e.g. `https://your-org.example/murmurations-profile.json`).
 3. Register that URL with the Murmurations index.
 4. *(Optional)* Add `relationships` to your profile and publish an
-   Offer-or-Want profile — copy `profiles/vdl-offer-murmurations-profile.json`
-   as a starting point.
+   Offer-or-Want profile — copy `profiles/example-offer-want-profile.json`
+   as a starting point (or a real one from `live/`).
 5. *(Optional)* Wire your RSS feed for live updates (see `docs/`).
 
 You never hand your data to this repo. You publish it where you control it; the

@@ -1,0 +1,22 @@
+{
+  "linked_schemas": ["offers_wants_schema-v0.1.0"],
+  "exchange_type": "offer",
+  "item_type": "service",
+  "transaction_type": ["receive-donate"],
+  "title": "Example offer — replace with what you are offering (or set exchange_type to \"want\")",
+  "description": "Describe the specific offer or want here: what it is, any conditions, and how someone responds. Replace this placeholder text.",
+  "tags": [
+    "volunteering",
+    "replace-these-tags"
+  ],
+  "geographic_scope": "local",
+  "geolocation": {
+    "lat": 0,
+    "lon": 0
+  },
+  "details_url": "https://example.org",
+  "contact_details": {
+    "email": "hello@example.org",
+    "contact_form": "https://example.org/contact/"
+  }
+}
