@@ -1,0 +1,80 @@
+name: Validate Murmurations profiles
+
+# Every profile JSON must pass the live Murmurations validator. This is the
+# guard whose absence let three invalid profiles sit published for ~six weeks
+# (see #20). It globs both profiles/ (examples) and live/ (real org profiles),
+# so it keeps working after the live/ split lands.
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Validate every profile against index.murmurations.network
+        run: |
+          set -uo pipefail
+          endpoint="https://index.murmurations.network/v2/validate"
+
+          fail=0
+          found=0
+          # Glob both dirs; either may not exist yet (live/ arrives in a later
+          # commit), so suppress find's missing-dir error and carry on. A
+          # while-read over process substitution keeps `fail`/`found` in this
+          # shell (no subshell) and avoids bash-4-only `mapfile`.
+          while IFS= read -r f; do
+            found=1
+            echo "== $f =="
+
+            # POST the profile BODY, not {\"profile_url\": ...} — the latter
+            # validates the request wrapper and returns a misleading
+            # \"linked_schemas required\" (see #20).
+            resp="$(curl -sS --retry 3 --retry-delay 2 -X POST "$endpoint" \
+              -H 'Content-Type: application/json' --data-binary @"$f")" || {
+              echo "  FAIL — request to validator failed"
+              fail=1; continue
+            }
+
+            if ! printf '%s' "$resp" | jq empty >/dev/null 2>&1; then
+              echo "  FAIL — validator returned non-JSON:"
+              printf '    %s\n' "$resp"
+              fail=1; continue
+            fi
+
+            # Real validator shapes: success is
+            #   {"meta":{"message":"... validated successfully ..."}}  (no errors key)
+            # failure is
+            #   {"errors":[{"title":...,"detail":...}, ...]}
+            # Treat a non-empty errors array as failure, an explicit meta.message
+            # as success, and anything else as an unexpected shape — fail loudly
+            # rather than risk a false green.
+            errcount="$(printf '%s' "$resp" | jq '(.errors // []) | length')"
+            if [ "$errcount" -gt 0 ]; then
+              echo "  FAIL — $errcount error(s):"
+              printf '%s' "$resp" | jq -r '.errors[] | "    - \(.title): \(.detail)"'
+              fail=1
+            elif printf '%s' "$resp" | jq -e '.meta.message // empty' >/dev/null 2>&1; then
+              echo "  OK — valid"
+            else
+              echo "  FAIL — unexpected validator response:"
+              printf '    %s\n' "$resp"
+              fail=1
+            fi
+          done < <(find profiles live -type f -name '*.json' 2>/dev/null | sort)
+
+          if [ "$found" -eq 0 ]; then
+            echo "No profile JSON found under profiles/ or live/ — nothing to validate."
+            exit 1
+          fi
+
+          if [ "$fail" -ne 0 ]; then
+            echo ""
+            echo "One or more profiles are invalid."
+            exit 1
+          fi
+          echo ""
+          echo "All profiles valid."

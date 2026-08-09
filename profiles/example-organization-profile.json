@@ -1,0 +1,31 @@
+{
+  "linked_schemas": ["organizations_schema-v1.0.0"],
+  "name": "Example Organization",
+  "nickname": "ExampleOrg",
+  "primary_url": "https://example.org",
+  "description": "A short description of who this organization is, where it is, and what it does. Replace this with your own — a sentence or two is plenty.",
+  "mission": "A one-line statement of what this organization exists to do.",
+  "tags": [
+    "regenerative agriculture",
+    "community",
+    "replace-these-tags"
+  ],
+  "status": "active",
+  "country_iso_3166": "PT",
+  "geolocation": {
+    "lat": 0,
+    "lon": 0
+  },
+  "geographic_scope": "local",
+  "rss": "https://example.org/feed/",
+  "contact_details": {
+    "email": "hello@example.org",
+    "contact_form": "https://example.org/contact/"
+  },
+  "relationships": [
+    {
+      "predicate_url": "https://schema.org/affiliation",
+      "object_url": "https://partner.example.org"
+    }
+  ]
+}
