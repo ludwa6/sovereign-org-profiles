@@ -6,6 +6,7 @@
   "description": "Mud Valley Foundation is a nonprofit based at Quinta Vale da Lama, Odiáxere, Lagos, SW Algarve, Portugal, focused on education and action-oriented initiatives for ecosystem restoration in southwestern Portugal. It runs the Ecosystem Regeneration Mondays volunteer program, the Ecosystem Regeneration Camp, and the Barlavento Ecosystem Regeneration Community, and hosts a Bioregional Learning Center for southwestern Portugal.",
   "mission": "To reverse the effects of desertification in the SW Algarve bioregion by building soil health, water availability, biodiversity, and regenerative local livelihoods through education and community action.",
   "tags": [
+    "barlavento-eco",
     "ecosystem restoration",
     "ecosystem regeneration",
     "desertification reversal",
@@ -35,14 +36,15 @@
     "lon": -8.632694
   },
   "geographic_scope": "regional",
+  "rss": "https://mudvalley.org/feed/",
   "contact_details": {
     "email": "info@mudvalley.org",
     "contact_form": "https://mudvalley.org/get-involved/"
   },
   "relationships": [
     {
-      "relationship_type": "host",
-      "related_url": "https://valedalama.net"
+      "predicate_url": "https://schema.org/affiliation",
+      "object_url": "https://valedalama.net"
     }
   ]
 }
