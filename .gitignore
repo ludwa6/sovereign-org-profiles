@@ -4,4 +4,9 @@
 .bram.json
 .claude/
 CLAUDE.md
+
+# CLAUDE.md is tracked deliberately: it carries the project-authored
+# Planner/Coder convention below Bram's marker block. The bram:start block
+# itself is only a 3-line import, so it does not churn the way AGENTS.md did.
+!CLAUDE.md
 resources/
