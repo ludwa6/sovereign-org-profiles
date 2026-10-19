@@ -96,7 +96,7 @@ add_action( 'rss2_head', 'vdl_rsscloud_emit_cloud_element' );
 
 // Declare the source: namespace on <rss> so <source:cloud> is XML-valid.
 add_action( 'rss2_ns', function () {
-	echo 'xmlns:source="http://source.smallpict.com/2014/07/12/theSourceNamespace.html"' . "\n";
+	echo 'xmlns:source="https://source.scripting.com/"' . "\n";
 } );
 
 function vdl_rsscloud_emit_cloud_element() {
@@ -164,8 +164,8 @@ function vdl_rsscloud_handle_register( WP_REST_Request $request ) {
 	}
 
 	$protocol = strtolower( trim( (string) $request->get_param( 'protocol' ) ) );
-	if ( 'http-post' !== $protocol ) {
-		return vdl_rsscloud_notify_result( false, 'Only the http-post (REST) protocol is supported by this endpoint.' );
+	if ( 'http-post' !== $protocol && 'https-post' !== $protocol ) {
+		return vdl_rsscloud_notify_result( false, 'Only the http-post and https-post protocols are supported by this endpoint.' );
 	}
 
 	$port = (int) $request->get_param( 'port' );
@@ -196,8 +196,9 @@ function vdl_rsscloud_handle_register( WP_REST_Request $request ) {
 		return vdl_rsscloud_notify_result( false, 'No feed URL (url1) supplied.' );
 	}
 
-	// http-post callbacks are HTTP; use HTTPS only when the caller nominates 443.
-	$scheme   = ( 443 === $port ) ? 'https' : 'http';
+	// https-post callbacks are HTTPS on any port; http-post callbacks are HTTP,
+	// except that 443 still means HTTPS (pleaseNotify has no scheme field).
+	$scheme   = ( 'https-post' === $protocol || 443 === $port ) ? 'https' : 'http';
 	$callback = sprintf( '%s://%s:%d%s', $scheme, $domain, $port, $path );
 
 	if ( ! vdl_rsscloud_callback_is_safe( $callback ) ) {
